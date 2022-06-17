@@ -25,7 +25,7 @@ module.exports = async (client) => {
         if (!command.data.description)
           console.warn(file.split(".")[0] + " has an invalid description");
 
-        client.commands.set(command.name, command);
+        client.commands.set(command.data.name, command);
       });
     }
 
