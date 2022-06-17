@@ -1,6 +1,6 @@
 module.exports = {
   name: "interactionCreate",
-  async run(client, interaction) {
+  async exec(client, interaction) {
     if (interaction.isCommand()) {
       const command = client.commands.get(interaction.commandName);
 
