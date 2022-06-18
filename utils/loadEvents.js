@@ -1,5 +1,6 @@
 const fs = require("node:fs");
 const path = require("node:path");
+const baseEvent = require("./structures/Event");
 const configF = require("../utils/config");
 
 module.exports = async (client) => {
@@ -15,12 +16,19 @@ module.exports = async (client) => {
 
     for (const file of eventFiles) {
       const filePath = path.join(eventsPath, file);
-      const event = require(filePath);
+      const Event = require(filePath);
 
-      if (!event.name) reject("Invalid event name.");
-      if (!event.run) reject("No run function, cannot execute event");
-      client.on(event.name, (...args) => event.exec(client, ...args));
-      resolve("Loaded events");
+      if (!(Event instanceof baseEvent)) {
+        const event = new Event();
+        if (!event.name) reject("Invalid event name.");
+        if (!Event.prototype.run)
+          reject("No run function, cannot execute event");
+
+        client.on(event.name, (...args) =>
+          Event.prototype.run(client, ...args)
+        );
+        resolve("Loaded events");
+      }
     }
   });
 };
