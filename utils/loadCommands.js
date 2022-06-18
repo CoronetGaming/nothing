@@ -1,5 +1,6 @@
 const fs = require("node:fs");
 const path = require("node:path");
+const baseCommand = require("./structures/Command");
 const configF = require("../utils/config");
 
 module.exports = async (client) => {
@@ -18,14 +19,18 @@ module.exports = async (client) => {
 
       files.forEach((file) => {
         const commandPath = path.join(filesPath, file);
-        const command = require(commandPath);
+        const commandFile = require(commandPath);
 
-        if (!command.data.name)
-          return console.error("Invalid command name, " + file.split(".")[0]);
-        if (!command.data.description)
-          console.warn(file.split(".")[0] + " has an invalid description");
+        if (commandFile.prototype instanceof baseCommand) {
+          const command = new commandFile();
 
-        client.commands.set(command.data.name, command);
+          if (!command.data.name)
+            return console.error("Invalid command name, " + file.split(".")[0]);
+          if (!command.data.description)
+            console.warn(file.split(".")[0] + " has an invalid description");
+
+          client.commands.set(command.data.name, commandFile.prototype);
+        }
       });
     }
 
