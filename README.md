@@ -34,5 +34,6 @@ soup
 ```
 npm install
 ```
+#### Will automate this in a future update.
 
 ### Made with 💖 by Legend108
