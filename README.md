@@ -1,5 +1,38 @@
-## base-cmd-handler
+## Generate this handler with ease.
 
-### In development, might not work
+### To install
 
-#### Inspired from [Discord JS Guide](https://discordjs.guide) and prolly the best open-source Discord [music bot](https://github.com/SudhanPlayz/Discord-MusicBot/tree/v5)
+```
+npm install -g soup
+```
+
+### Generate a new project
+
+```
+soup
+```
+
+## Steps
+
+#### Select Create Project in order to generate a new Handler.
+
+#### Set the project name for the folder you want to install the handler to.
+
+#### Provide your bot token next
+
+#### Now the Client ID of your bot project, you can simply right click on your bot to get it. You need to have Developer Mode enabled in order to get the Client ID.
+
+### Now, just wait!
+
+#### Once it get's installed, you will get a success message.
+
+## Note:
+
+### You need to have [git](https://git-scm.com/downloads) installed in order to use this. I might change this in later updates
+
+### To install the packages, just move to the directory and type in 
+```
+npm install
+```
+
+### Made with 💖 by Legend108
