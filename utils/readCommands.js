@@ -16,7 +16,9 @@ module.exports = async () => {
 
       files.forEach((file) => {
         const commandPath = path.join(filesPath, file);
-        const command = require(commandPath);
+        const commandFile = require(commandPath);
+
+        const command = new commandFile();
 
         if (!command.data) reject("Invalid command data");
 
