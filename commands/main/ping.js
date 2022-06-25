@@ -1,8 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const Command = require("../../utils/structures/Command");
 
-module.exports = class LogCommand extends Command {
-  // Class commands, coz why not (looks cooler lol)
+module.exports = class PingCommand extends Command {
   constructor() {
     super(
       new SlashCommandBuilder()
@@ -12,8 +11,11 @@ module.exports = class LogCommand extends Command {
   }
 
   async run(client, interaction) {
-    return interaction.reply({
-      content: client.ws.ping + "ms :ping_pong:",
-    });
+    return this.success(
+      interaction,
+      "Current Ping",
+      "Current bot ping is: " + client.ws.ping + "ms :ping_pong:",
+      undefined
+    );
   }
 };
